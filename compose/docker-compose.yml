@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16.2-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${TWITTER_POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${TWITTER_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${TWITTER_POSTGRES_DB_NAME}
+    ports:
+       - '${TWITTER_POSTGRES_DB_PORT}:5432'
