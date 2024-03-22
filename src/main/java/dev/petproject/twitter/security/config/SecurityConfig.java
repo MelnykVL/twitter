@@ -1,4 +1,4 @@
-package dev.petproject.twitter.config;
+package dev.petproject.twitter.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
