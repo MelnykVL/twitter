@@ -31,10 +31,11 @@ public class UserAccountController {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@Valid @RequestBody RegisterRequest registerRequest) {
         UserRole userRole = this.userRoleService.findUserRole()
-                                                .orElseThrow(() -> new RuntimeException("User role not found"));
+                .orElseThrow(() -> new RuntimeException("User role not found"));
 
         UserAccount userAccount = new UserAccount();
-        userAccount.setUsername(registerRequest.username().toLowerCase(Locale.ROOT));
+        userAccount.setUsername(registerRequest.username()
+                .toLowerCase(Locale.ROOT));
         userAccount.setPassword(this.passwordEncoder.encode(registerRequest.password()));
         userAccount.setAuthorities(Set.of(userRole));
 
