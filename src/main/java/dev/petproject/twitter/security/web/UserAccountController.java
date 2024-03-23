@@ -5,9 +5,9 @@ import dev.petproject.twitter.security.model.UserRole;
 import dev.petproject.twitter.security.service.UserAccountService;
 import dev.petproject.twitter.security.service.UserRoleService;
 import dev.petproject.twitter.security.web.model.RegisterRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
@@ -29,10 +29,7 @@ public class UserAccountController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@RequestBody RegisterRequest registerRequest) {
-        Assert.hasLength(registerRequest.username(), "Username should not be null or empty");
-        Assert.hasLength(registerRequest.password(), "Password should not be null or empty");
-
+    public void registerAccount(@Valid @RequestBody RegisterRequest registerRequest) {
         UserRole userRole = this.userRoleService.findUserRole()
                                                 .orElseThrow(() -> new RuntimeException("User role not found"));
 
