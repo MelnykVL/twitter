@@ -5,7 +5,9 @@ import dev.petproject.twitter.security.model.UserAccount;
 import dev.petproject.twitter.security.service.UserAccountService;
 import dev.petproject.twitter.security.usecase.RegisterUserAccountUseCase;
 import dev.petproject.twitter.security.web.model.RegisterRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RegisterUserAccountUseCaseFacade implements RegisterUserAccountUseCase {
 
     private final UserAccountService userAccountService;
