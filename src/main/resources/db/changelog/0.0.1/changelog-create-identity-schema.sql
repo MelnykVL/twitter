@@ -10,8 +10,8 @@ CREATE SCHEMA identity;
 CREATE TABLE identity.user_accounts
 (
     id          SERIAL PRIMARY KEY,
-    username    VARCHAR(32) UNIQUE NOT NULL,
-    password    VARCHAR(128) NOT NULL
+    username    VARCHAR(32)     UNIQUE NOT NULL,
+    password    VARCHAR(128)    NOT NULL
 );
 --rollback drop table identity.user_accounts;
 
