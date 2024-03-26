@@ -1,0 +1,13 @@
+package dev.petproject.twitter.user.tweet.mapper.impl;
+
+import dev.petproject.twitter.user.tweet.mapper.TweetToTweetResponseMapper;
+import dev.petproject.twitter.user.tweet.model.Tweet;
+import dev.petproject.twitter.user.tweet.web.model.TweetResponse;
+
+public class TweetToTweetResponseMapperImpl implements TweetToTweetResponseMapper {
+
+    @Override
+    public TweetResponse map(Tweet tweet) {
+        return new TweetResponse(tweet.getId(), tweet.getMessage(), tweet.getCreatedTimestamp());
+    }
+}
