@@ -19,7 +19,8 @@ public class UserProfileRegisterRequestToUserProfileMapperImpl implements UserPr
     @Override
     public UserProfile map(UserProfileRegisterRequest registerRequest) {
         CurrentUserApiModel currentUserApiModel = this.identityApiService.currentUserAccount()
-                .orElseThrow(() -> new RuntimeException("To create a user profile, user have to log in to the system"));
+                .orElseThrow(() -> new RuntimeException(
+                        "To create a user profile, the user must be authorized in the system"));
 
         UserProfile userProfile = new UserProfile();
         userProfile.setId(currentUserApiModel.userAccountId());
