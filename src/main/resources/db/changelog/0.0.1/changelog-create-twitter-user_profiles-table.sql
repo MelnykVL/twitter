@@ -5,8 +5,8 @@
 CREATE TABLE twitter.user_profiles
 (
     id          INTEGER PRIMARY KEY,
-    nickname    VARCHAR(32) NOT NULL,
-    image_link  VARCHAR(128) NOT NULL
+    nickname    VARCHAR(32)     NOT NULL,
+    image_link  VARCHAR(128)    NOT NULL
 );
 --rollback drop table twitter.user_profiles;
 
