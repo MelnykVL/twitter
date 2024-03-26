@@ -3,7 +3,9 @@ package dev.petproject.twitter.user.tweet.service.impl;
 import dev.petproject.twitter.user.tweet.model.Tweet;
 import dev.petproject.twitter.user.tweet.repository.TweetRepository;
 import dev.petproject.twitter.user.tweet.service.TweetService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TweetServiceImpl implements TweetService {
 
     private final TweetRepository tweetRepository;
