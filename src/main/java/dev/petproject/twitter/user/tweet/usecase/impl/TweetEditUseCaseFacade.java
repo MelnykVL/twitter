@@ -41,7 +41,7 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
 
         if (!actor.equals(owner)) {
             String errorMessage = String.format(
-                    "You cannot edit the tweet with Id = %d. User %s is not owner of the tweet.",
+                    "You cannot edit a tweet with Id = %d. User %s is not owner of the tweet.",
                     tweetEditRequest.id(),
                     actor.getNickname());
             throw new RuntimeException(errorMessage);
