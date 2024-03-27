@@ -24,6 +24,6 @@ public class TweetEditRequestToTweetMapperImpl implements TweetEditRequestToTwee
                 });
         currentTweet.setMessage(tweetEditRequest.message());
 
-        return null;
+        return currentTweet;
     }
 }
