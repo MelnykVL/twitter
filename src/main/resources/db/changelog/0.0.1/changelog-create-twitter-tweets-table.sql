@@ -18,3 +18,16 @@ ALTER TABLE twitter.tweets
         FOREIGN KEY (user_profile_id) REFERENCES twitter.user_profiles (id);
 
 --rollback alter table twitter.tweets drop constraint tweets__user_profiles__fk;
+
+--changeset MelnykVL:add-twitter-user_profiles-table-column-modified_timestamp
+--comment add column modified_timestamp to twitter.tweets table
+ALTER TABLE twitter.tweets
+    ADD COLUMN modified_timestamp TIMESTAMP;
+
+UPDATE twitter.tweets
+SET modified_timestamp = created_timestamp
+WHERE modified_timestamp IS NULL;
+
+ALTER TABLE twitter.tweets
+    ALTER COLUMN modified_timestamp SET NOT NULL;
+--rollback alter table twitter.tweets drop column modified_timestamp;
