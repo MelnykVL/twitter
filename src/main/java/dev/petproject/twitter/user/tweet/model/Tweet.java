@@ -25,7 +25,7 @@ public class Tweet {
     @Column(nullable = false, updatable = false)
     private Instant createdTimestamp;
     @LastModifiedDate
-    @Column
+    @Column(nullable = false)
     private Instant modifiedTimestamp;
     @ManyToOne(optional = false)
     private UserProfile userProfile;
