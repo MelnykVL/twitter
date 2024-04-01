@@ -11,8 +11,8 @@ public class TweetToTweetResponseMapperImpl implements TweetToTweetResponseMappe
     @Override
     public TweetResponse map(Tweet tweet) {
         return new TweetResponse(tweet.getId(),
-                                 tweet.getMessage(),
-                                 tweet.getCreatedTimestamp(),
-                                 tweet.getModifiedTimestamp());
+                tweet.getMessage(),
+                tweet.getCreatedTimestamp(),
+                tweet.getModifiedTimestamp());
     }
 }

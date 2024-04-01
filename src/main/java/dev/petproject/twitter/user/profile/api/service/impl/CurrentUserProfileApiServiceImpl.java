@@ -14,7 +14,7 @@ public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiSe
     private final UserProfileService userProfileService;
 
     public CurrentUserProfileApiServiceImpl(IdentityApiService identityApiService,
-            UserProfileService userProfileService) {
+                                            UserProfileService userProfileService) {
         this.identityApiService = identityApiService;
         this.userProfileService = userProfileService;
     }
@@ -27,7 +27,7 @@ public class CurrentUserProfileApiServiceImpl implements CurrentUserProfileApiSe
         return this.userProfileService.findUserProfileById(currentUser.userAccountId())
                 .orElseThrow(() -> {
                     String errorMessage = String.format("User with Id = %d does not exist",
-                                                        currentUser.userAccountId());
+                            currentUser.userAccountId());
                     throw new RuntimeException(errorMessage);
                 });
     }

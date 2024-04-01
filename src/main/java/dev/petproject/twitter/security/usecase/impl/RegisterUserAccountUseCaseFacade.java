@@ -14,7 +14,7 @@ public class RegisterUserAccountUseCaseFacade implements RegisterUserAccountUseC
     private final RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper;
 
     public RegisterUserAccountUseCaseFacade(UserAccountService userAccountService,
-            RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper) {
+                                            RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper) {
         this.userAccountService = userAccountService;
         this.registerRequestToUserAccountMapper = registerRequestToUserAccountMapper;
     }

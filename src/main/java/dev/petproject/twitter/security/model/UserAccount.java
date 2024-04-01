@@ -22,7 +22,7 @@ public class UserAccount {
     private String password;
     @ManyToMany
     @JoinTable(schema = "identity", name = "user_accounts_roles",
-               joinColumns = {@JoinColumn(name = "user_account_id", referencedColumnName = "id")},
-               inverseJoinColumns = {@JoinColumn(name = "user_role_id", referencedColumnName = "id")})
+            joinColumns = {@JoinColumn(name = "user_account_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_role_id", referencedColumnName = "id")})
     private Set<UserRole> authorities = new HashSet<>();
 }

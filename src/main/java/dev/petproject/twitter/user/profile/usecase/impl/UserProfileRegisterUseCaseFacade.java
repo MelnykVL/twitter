@@ -14,7 +14,7 @@ public class UserProfileRegisterUseCaseFacade implements UserProfileRegisterUseC
     private final UserProfileRegisterRequestToUserProfileMapper mapper;
 
     public UserProfileRegisterUseCaseFacade(UserProfileService userProfileService,
-            UserProfileRegisterRequestToUserProfileMapper mapper) {
+                                            UserProfileRegisterRequestToUserProfileMapper mapper) {
         this.userProfileService = userProfileService;
         this.mapper = mapper;
     }

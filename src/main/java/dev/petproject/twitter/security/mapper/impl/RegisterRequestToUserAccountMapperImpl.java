@@ -29,7 +29,7 @@ public class RegisterRequestToUserAccountMapperImpl implements RegisterRequestTo
 
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(registerRequest.username()
-                                        .toLowerCase(Locale.ROOT));
+                .toLowerCase(Locale.ROOT));
         userAccount.setPassword(this.passwordEncoder.encode(registerRequest.password()));
         userAccount.setAuthorities(Set.of(userRole));
 

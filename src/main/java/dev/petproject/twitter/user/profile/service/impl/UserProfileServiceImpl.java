@@ -20,12 +20,12 @@ public class UserProfileServiceImpl implements UserProfileService {
     public void createUserProfile(UserProfile userProfile) {
         if (this.userProfileRepository.existsById(userProfile.getId())) {
             String errorMessage = String.format("User profile with specified Id = %d already exists",
-                                                userProfile.getId());
+                    userProfile.getId());
             throw new RuntimeException(errorMessage);
         }
         if (this.userProfileRepository.existsByNickname(userProfile.getNickname())) {
             String errorMessage = String.format("User profile with specified Nickname = %s already exists",
-                                                userProfile.getNickname());
+                    userProfile.getNickname());
             throw new RuntimeException(errorMessage);
         }
         this.userProfileRepository.save(userProfile);

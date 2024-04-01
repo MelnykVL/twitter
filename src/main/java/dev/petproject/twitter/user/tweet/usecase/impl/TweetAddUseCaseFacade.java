@@ -17,7 +17,7 @@ public class TweetAddUseCaseFacade implements TweetAddUseCase {
     private final TweetService tweetService;
 
     public TweetAddUseCaseFacade(TweetAddRequestToTweetMapper tweetAddRequestToTweetMapper,
-            TweetToTweetResponseMapper tweetToTweetResponseMapper, TweetService tweetService) {
+                                 TweetToTweetResponseMapper tweetToTweetResponseMapper, TweetService tweetService) {
         this.tweetAddRequestToTweetMapper = tweetAddRequestToTweetMapper;
         this.tweetToTweetResponseMapper = tweetToTweetResponseMapper;
         this.tweetService = tweetService;

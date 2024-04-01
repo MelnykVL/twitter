@@ -20,9 +20,9 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
     private final CurrentUserProfileApiService currentUserProfileApiService;
 
     public TweetEditUseCaseFacade(TweetService tweetService,
-            TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper,
-            TweetToTweetResponseMapper tweetToTweetResponseMapper,
-            CurrentUserProfileApiService currentUserProfileApiService) {
+                                  TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper,
+                                  TweetToTweetResponseMapper tweetToTweetResponseMapper,
+                                  CurrentUserProfileApiService currentUserProfileApiService) {
         this.tweetService = tweetService;
         this.tweetEditRequestToTweetMapper = tweetEditRequestToTweetMapper;
         this.tweetToTweetResponseMapper = tweetToTweetResponseMapper;
