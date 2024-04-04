@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class TwitterApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(TwitterApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(TwitterApplication.class, args);
+  }
 }

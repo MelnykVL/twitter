@@ -4,5 +4,5 @@ import dev.petproject.twitter.user.profile.model.UserProfile;
 
 public interface CurrentUserProfileApiService {
 
-    UserProfile currentUserProfile();
+  UserProfile currentUserProfile();
 }

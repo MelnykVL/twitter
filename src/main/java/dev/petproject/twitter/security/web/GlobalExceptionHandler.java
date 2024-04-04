@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
-    public ProblemDetail handleRuntimeErrors(RuntimeException ex) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
-    }
+  @ExceptionHandler(RuntimeException.class)
+  public ProblemDetail handleRuntimeErrors(RuntimeException ex) {
+    return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+  }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ProblemDetail handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        FieldError fieldError = ex.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .filter(FieldError.class::isInstance)
-                .map(FieldError.class::cast)
-                .findFirst()
-                .orElseThrow();
-        String errorMessage = String.format("%s %s", fieldError.getField(), fieldError.getDefaultMessage());
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ProblemDetail handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    FieldError fieldError = ex.getBindingResult()
+        .getAllErrors()
+        .stream()
+        .filter(FieldError.class::isInstance)
+        .map(FieldError.class::cast)
+        .findFirst()
+        .orElseThrow();
+    String errorMessage = String.format("%s %s", fieldError.getField(), fieldError.getDefaultMessage());
 
-        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, errorMessage);
-    }
+    return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, errorMessage);
+  }
 }

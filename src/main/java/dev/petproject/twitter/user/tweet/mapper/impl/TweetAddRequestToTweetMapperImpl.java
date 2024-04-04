@@ -9,18 +9,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class TweetAddRequestToTweetMapperImpl implements TweetAddRequestToTweetMapper {
 
-    private final CurrentUserProfileApiService currentUserProfileApiService;
+  private final CurrentUserProfileApiService currentUserProfileApiService;
 
-    public TweetAddRequestToTweetMapperImpl(CurrentUserProfileApiService currentUserProfileApiService) {
-        this.currentUserProfileApiService = currentUserProfileApiService;
-    }
+  public TweetAddRequestToTweetMapperImpl(CurrentUserProfileApiService currentUserProfileApiService) {
+    this.currentUserProfileApiService = currentUserProfileApiService;
+  }
 
-    @Override
-    public Tweet map(TweetAddRequest tweetAddRequest) {
-        Tweet tweet = new Tweet();
-        tweet.setMessage(tweetAddRequest.message());
-        tweet.setUserProfile(this.currentUserProfileApiService.currentUserProfile());
+  @Override
+  public Tweet map(TweetAddRequest tweetAddRequest) {
+    Tweet tweet = new Tweet();
+    tweet.setMessage(tweetAddRequest.message());
+    tweet.setUserProfile(this.currentUserProfileApiService.currentUserProfile());
 
-        return tweet;
-    }
+    return tweet;
+  }
 }

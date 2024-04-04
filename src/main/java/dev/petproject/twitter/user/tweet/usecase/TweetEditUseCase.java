@@ -5,5 +5,5 @@ import dev.petproject.twitter.user.tweet.web.model.TweetResponse;
 
 public interface TweetEditUseCase {
 
-    TweetResponse editTweet(TweetEditRequest tweetEditRequest);
+  TweetResponse editTweet(TweetEditRequest tweetEditRequest);
 }

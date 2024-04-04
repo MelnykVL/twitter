@@ -13,10 +13,10 @@ import lombok.Setter;
 @Table(schema = "twitter", name = "user_profiles")
 public class UserProfile {
 
-    @Id
-    private Long id;
-    @Column(unique = true, nullable = false)
-    private String nickname;
-    @Column(nullable = false)
-    private String imageLink;
+  @Id
+  private Long id;
+  @Column(unique = true, nullable = false)
+  private String nickname;
+  @Column(nullable = false)
+  private String imageLink;
 }

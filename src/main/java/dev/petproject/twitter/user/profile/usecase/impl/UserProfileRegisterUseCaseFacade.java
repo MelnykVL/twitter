@@ -10,18 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserProfileRegisterUseCaseFacade implements UserProfileRegisterUseCase {
 
-    private final UserProfileService userProfileService;
-    private final UserProfileRegisterRequestToUserProfileMapper mapper;
+  private final UserProfileService userProfileService;
+  private final UserProfileRegisterRequestToUserProfileMapper mapper;
 
-    public UserProfileRegisterUseCaseFacade(UserProfileService userProfileService,
-                                            UserProfileRegisterRequestToUserProfileMapper mapper) {
-        this.userProfileService = userProfileService;
-        this.mapper = mapper;
-    }
+  public UserProfileRegisterUseCaseFacade(UserProfileService userProfileService,
+      UserProfileRegisterRequestToUserProfileMapper mapper) {
+    this.userProfileService = userProfileService;
+    this.mapper = mapper;
+  }
 
-    @Override
-    public void registerUserProfile(UserProfileRegisterRequest registerRequest) {
-        UserProfile userProfile = this.mapper.map(registerRequest);
-        this.userProfileService.createUserProfile(userProfile);
-    }
+  @Override
+  public void registerUserProfile(UserProfileRegisterRequest registerRequest) {
+    UserProfile userProfile = this.mapper.map(registerRequest);
+    this.userProfileService.createUserProfile(userProfile);
+  }
 }

@@ -9,21 +9,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class TweetEditRequestToTweetMapperImpl implements TweetEditRequestToTweetMapper {
 
-    private final TweetService tweetService;
+  private final TweetService tweetService;
 
-    public TweetEditRequestToTweetMapperImpl(TweetService tweetService) {
-        this.tweetService = tweetService;
-    }
+  public TweetEditRequestToTweetMapperImpl(TweetService tweetService) {
+    this.tweetService = tweetService;
+  }
 
-    @Override
-    public Tweet map(TweetEditRequest tweetEditRequest) {
-        Tweet currentTweet = this.tweetService.findTweetById(tweetEditRequest.id())
-                .orElseThrow(() -> {
-                    String errorMessage = String.format("Tweet with Id = %d does not exist.", tweetEditRequest.id());
-                    return new RuntimeException(errorMessage);
-                });
-        currentTweet.setMessage(tweetEditRequest.message());
+  @Override
+  public Tweet map(TweetEditRequest tweetEditRequest) {
+    Tweet currentTweet = this.tweetService.findTweetById(tweetEditRequest.id())
+        .orElseThrow(() -> {
+          String errorMessage = String.format("Tweet with Id = %d does not exist.", tweetEditRequest.id());
+          return new RuntimeException(errorMessage);
+        });
+    currentTweet.setMessage(tweetEditRequest.message());
 
-        return currentTweet;
-    }
+    return currentTweet;
+  }
 }

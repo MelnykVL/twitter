@@ -2,10 +2,9 @@ package dev.petproject.twitter.security.repository;
 
 import dev.petproject.twitter.security.model.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.Optional;
 
 public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 
-    Optional<UserRole> findByAuthority(String authority);
+  Optional<UserRole> findByAuthority(String authority);
 }

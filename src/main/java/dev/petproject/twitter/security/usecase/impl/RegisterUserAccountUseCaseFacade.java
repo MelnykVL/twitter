@@ -10,18 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegisterUserAccountUseCaseFacade implements RegisterUserAccountUseCase {
 
-    private final UserAccountService userAccountService;
-    private final RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper;
+  private final UserAccountService userAccountService;
+  private final RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper;
 
-    public RegisterUserAccountUseCaseFacade(UserAccountService userAccountService,
-                                            RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper) {
-        this.userAccountService = userAccountService;
-        this.registerRequestToUserAccountMapper = registerRequestToUserAccountMapper;
-    }
+  public RegisterUserAccountUseCaseFacade(UserAccountService userAccountService,
+      RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper) {
+    this.userAccountService = userAccountService;
+    this.registerRequestToUserAccountMapper = registerRequestToUserAccountMapper;
+  }
 
-    @Override
-    public void register(RegisterRequest registerRequest) {
-        UserAccount userAccount = this.registerRequestToUserAccountMapper.map(registerRequest);
-        this.userAccountService.createUserAccount(userAccount);
-    }
+  @Override
+  public void register(RegisterRequest registerRequest) {
+    UserAccount userAccount = this.registerRequestToUserAccountMapper.map(registerRequest);
+    this.userAccountService.createUserAccount(userAccount);
+  }
 }

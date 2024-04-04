@@ -12,18 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserAccountService userAccountService;
-    private final UserAccountToUserMapper mapper;
+  private final UserAccountService userAccountService;
+  private final UserAccountToUserMapper mapper;
 
-    public UserDetailsServiceImpl(UserAccountService userAccountService, UserAccountToUserMapper mapper) {
-        this.userAccountService = userAccountService;
-        this.mapper = mapper;
-    }
+  public UserDetailsServiceImpl(UserAccountService userAccountService, UserAccountToUserMapper mapper) {
+    this.userAccountService = userAccountService;
+    this.mapper = mapper;
+  }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return this.userAccountService.findUserByUsername(username)
-                .map(this.mapper::map)
-                .orElseThrow(() -> new UsernameNotFoundException("Bad credentials"));
-    }
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    return this.userAccountService.findUserByUsername(username)
+        .map(this.mapper::map)
+        .orElseThrow(() -> new UsernameNotFoundException("Bad credentials"));
+  }
 }

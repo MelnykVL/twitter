@@ -4,5 +4,5 @@ import dev.petproject.twitter.user.profile.web.model.UserProfileRegisterRequest;
 
 public interface UserProfileRegisterUseCase {
 
-    void registerUserProfile(UserProfileRegisterRequest userProfileRegisterRequest);
+  void registerUserProfile(UserProfileRegisterRequest userProfileRegisterRequest);
 }

@@ -12,21 +12,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class TweetAddUseCaseFacade implements TweetAddUseCase {
 
-    private final TweetAddRequestToTweetMapper tweetAddRequestToTweetMapper;
-    private final TweetToTweetResponseMapper tweetToTweetResponseMapper;
-    private final TweetService tweetService;
+  private final TweetAddRequestToTweetMapper tweetAddRequestToTweetMapper;
+  private final TweetToTweetResponseMapper tweetToTweetResponseMapper;
+  private final TweetService tweetService;
 
-    public TweetAddUseCaseFacade(TweetAddRequestToTweetMapper tweetAddRequestToTweetMapper,
-                                 TweetToTweetResponseMapper tweetToTweetResponseMapper, TweetService tweetService) {
-        this.tweetAddRequestToTweetMapper = tweetAddRequestToTweetMapper;
-        this.tweetToTweetResponseMapper = tweetToTweetResponseMapper;
-        this.tweetService = tweetService;
-    }
+  public TweetAddUseCaseFacade(TweetAddRequestToTweetMapper tweetAddRequestToTweetMapper,
+      TweetToTweetResponseMapper tweetToTweetResponseMapper, TweetService tweetService) {
+    this.tweetAddRequestToTweetMapper = tweetAddRequestToTweetMapper;
+    this.tweetToTweetResponseMapper = tweetToTweetResponseMapper;
+    this.tweetService = tweetService;
+  }
 
-    @Override
-    public TweetResponse addTweet(TweetAddRequest tweetAddRequest) {
-        Tweet tweet = this.tweetAddRequestToTweetMapper.map(tweetAddRequest);
-        tweetService.createTweet(tweet);
-        return this.tweetToTweetResponseMapper.map(tweet);
-    }
+  @Override
+  public TweetResponse addTweet(TweetAddRequest tweetAddRequest) {
+    Tweet tweet = this.tweetAddRequestToTweetMapper.map(tweetAddRequest);
+    tweetService.createTweet(tweet);
+    return this.tweetToTweetResponseMapper.map(tweet);
+  }
 }
