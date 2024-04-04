@@ -47,10 +47,9 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
             throw new RuntimeException(errorMessage);
         }
 
-        // TODO: Debug this
         Tweet tweet = this.tweetEditRequestToTweetMapper.map(tweetEditRequest);
-        Tweet updatedTweet = this.tweetService.updateTweet(tweet);
+        this.tweetService.updateTweet(tweet);
 
-        return this.tweetToTweetResponseMapper.map(updatedTweet);
+        return this.tweetToTweetResponseMapper.map(tweet);
     }
 }
