@@ -4,6 +4,7 @@ import dev.petproject.twitter.user.profile.model.UserProfile;
 import dev.petproject.twitter.user.tweet.model.Tweet;
 import dev.petproject.twitter.user.tweet.repository.TweetRepository;
 import dev.petproject.twitter.user.tweet.service.TweetService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +39,7 @@ public class TweetServiceImpl implements TweetService {
   }
 
   @Override
-  public List<Tweet> findAllTweets(UserProfile owner) {
-    return this.tweetRepository.findAllByUserProfile(owner);
+  public List<Tweet> findAllTweets(UserProfile owner, Pageable pageable) {
+    return this.tweetRepository.findAllByUserProfile(owner, pageable);
   }
 }
