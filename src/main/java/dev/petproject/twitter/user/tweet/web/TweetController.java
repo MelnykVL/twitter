@@ -7,6 +7,7 @@ import dev.petproject.twitter.user.tweet.usecase.TweetFindUseCase;
 import dev.petproject.twitter.user.tweet.web.model.TweetAddRequest;
 import dev.petproject.twitter.user.tweet.web.model.TweetEditRequest;
 import dev.petproject.twitter.user.tweet.web.model.TweetFindRequest;
+import dev.petproject.twitter.user.tweet.web.model.TweetPageResponse;
 import dev.petproject.twitter.user.tweet.web.model.TweetResponse;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tweets")
@@ -56,7 +56,7 @@ public class TweetController {
   }
 
   @GetMapping
-  public List<TweetResponse> findOwnerTweets(@PathParam("page") int page, @PathParam("limit") int limit) {
+  public TweetPageResponse findOwnerTweets(@PathParam("page") int page, @PathParam("limit") int limit) {
     TweetFindRequest tweetFindRequest = new TweetFindRequest(page, limit);
     return this.tweetFindUseCase.findTweets(tweetFindRequest);
   }
