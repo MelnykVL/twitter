@@ -29,7 +29,7 @@ public class SubscriptionController {
   }
 
   @PostMapping("/unsubscribe")
-  public void unssubscribe(@Valid @RequestBody UnsubscribeRequest unsubscribeRequest) {
+  public void unsubscribe(@Valid @RequestBody UnsubscribeRequest unsubscribeRequest) {
     this.subscriptionDeleteUseCase.unsubscribe(unsubscribeRequest);
   }
 }
