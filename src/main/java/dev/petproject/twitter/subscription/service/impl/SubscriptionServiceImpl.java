@@ -22,13 +22,18 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
   @Override
   public void deleteSubscription(Subscription subscription) {
-    this.subscriptionRepository.deleteById(subscription.getId());
+    UserProfile follower = subscription.getFollower();
+    UserProfile followed = subscription.getFollowed();
+
+    this.subscriptionRepository.findByFollowerAndFollowed(follower, followed)
+        .ifPresent(this.subscriptionRepository::delete);
   }
 
   @Override
   public boolean existsSubscription(Subscription subscription) {
     UserProfile follower = subscription.getFollower();
     UserProfile followed = subscription.getFollowed();
+
     return this.subscriptionRepository.existsByFollowerAndFollowed(follower, followed);
   }
 }
