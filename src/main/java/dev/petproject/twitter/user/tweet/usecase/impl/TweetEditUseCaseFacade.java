@@ -1,6 +1,6 @@
 package dev.petproject.twitter.user.tweet.usecase.impl;
 
-import dev.petproject.twitter.user.profile.api.service.CurrentUserProfileApiService;
+import dev.petproject.twitter.user.profile.api.service.UserProfileApiService;
 import dev.petproject.twitter.user.profile.model.UserProfile;
 import dev.petproject.twitter.user.tweet.mapper.TweetEditRequestToTweetMapper;
 import dev.petproject.twitter.user.tweet.mapper.TweetToTweetResponseMapper;
@@ -17,20 +17,19 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
   private final TweetService tweetService;
   private final TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper;
   private final TweetToTweetResponseMapper tweetToTweetResponseMapper;
-  private final CurrentUserProfileApiService currentUserProfileApiService;
+  private final UserProfileApiService userProfileApiService;
 
   public TweetEditUseCaseFacade(TweetService tweetService, TweetEditRequestToTweetMapper tweetEditRequestToTweetMapper,
-      TweetToTweetResponseMapper tweetToTweetResponseMapper,
-      CurrentUserProfileApiService currentUserProfileApiService) {
+      TweetToTweetResponseMapper tweetToTweetResponseMapper, UserProfileApiService userProfileApiService) {
     this.tweetService = tweetService;
     this.tweetEditRequestToTweetMapper = tweetEditRequestToTweetMapper;
     this.tweetToTweetResponseMapper = tweetToTweetResponseMapper;
-    this.currentUserProfileApiService = currentUserProfileApiService;
+    this.userProfileApiService = userProfileApiService;
   }
 
   @Override
   public TweetResponse editTweet(TweetEditRequest tweetEditRequest) {
-    UserProfile actor = this.currentUserProfileApiService.currentUserProfile();
+    UserProfile actor = this.userProfileApiService.currentUserProfile();
     UserProfile owner = this.tweetService.findTweetById(tweetEditRequest.id())
         .map(Tweet::getUserProfile)
         .orElseThrow(() -> {

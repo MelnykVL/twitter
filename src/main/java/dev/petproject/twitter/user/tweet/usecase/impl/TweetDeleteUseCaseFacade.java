@@ -1,6 +1,6 @@
 package dev.petproject.twitter.user.tweet.usecase.impl;
 
-import dev.petproject.twitter.user.profile.api.service.CurrentUserProfileApiService;
+import dev.petproject.twitter.user.profile.api.service.UserProfileApiService;
 import dev.petproject.twitter.user.profile.model.UserProfile;
 import dev.petproject.twitter.user.tweet.model.Tweet;
 import dev.petproject.twitter.user.tweet.service.TweetService;
@@ -11,17 +11,16 @@ import org.springframework.stereotype.Component;
 public class TweetDeleteUseCaseFacade implements TweetDeleteUseCase {
 
   private final TweetService tweetService;
-  private final CurrentUserProfileApiService currentUserProfileApiService;
+  private final UserProfileApiService userProfileApiService;
 
-  public TweetDeleteUseCaseFacade(TweetService tweetService,
-      CurrentUserProfileApiService currentUserProfileApiService) {
+  public TweetDeleteUseCaseFacade(TweetService tweetService, UserProfileApiService userProfileApiService) {
     this.tweetService = tweetService;
-    this.currentUserProfileApiService = currentUserProfileApiService;
+    this.userProfileApiService = userProfileApiService;
   }
 
   @Override
   public void deleteTweet(long tweetId) {
-    UserProfile actor = this.currentUserProfileApiService.currentUserProfile();
+    UserProfile actor = this.userProfileApiService.currentUserProfile();
     UserProfile owner = this.tweetService.findTweetById(tweetId)
         .map(Tweet::getUserProfile)
         .orElseThrow(() -> {
