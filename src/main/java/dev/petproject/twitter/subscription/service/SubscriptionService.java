@@ -4,9 +4,9 @@ import dev.petproject.twitter.subscription.model.Subscription;
 
 public interface SubscriptionService {
 
-  void subscribe(Subscription subscription);
+  void createSubscription(Subscription subscription);
 
-  void unsubscribe(Subscription subscription);
+  void deleteSubscription(Subscription subscription);
 
   boolean existsSubscription(Subscription subscription);
 }
