@@ -4,7 +4,6 @@ import dev.petproject.twitter.user.profile.model.UserProfile;
 import dev.petproject.twitter.user.profile.repository.UserProfileRepository;
 import dev.petproject.twitter.user.profile.service.UserProfileService;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
@@ -30,7 +29,11 @@ public class UserProfileServiceImpl implements UserProfileService {
   }
 
   @Override
-  public Optional<UserProfile> findUserProfileById(long userProfileId) {
-    return this.userProfileRepository.findById(userProfileId);
+  public UserProfile findUserProfileById(long userProfileId) {
+    return this.userProfileRepository.findById(userProfileId)
+        .orElseThrow(() -> {
+          String errorMessage = String.format("User with Id = %d does not exist", userProfileId);
+          return new RuntimeException(errorMessage);
+        });
   }
 }

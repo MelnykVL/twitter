@@ -6,5 +6,5 @@ public interface UserProfileApiService {
 
   UserProfile currentUserProfile();
 
-  UserProfile findUserProfileById(Long userProfileId);
+  UserProfile findUserProfileById(long userProfileId);
 }
