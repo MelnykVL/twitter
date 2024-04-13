@@ -31,11 +31,11 @@ public class JwtAccessTokenServiceImpl implements AccessTokenService {
         .map(GrantedAuthority::getAuthority)
         .toList();
     Instant issuedAt = Instant.now();
-    Instant expirseAt = issuedAt.plus(10, ChronoUnit.MINUTES);
+    Instant expiresAt = issuedAt.plus(10, ChronoUnit.MINUTES);
     JwtClaimsSet claimsSet = JwtClaimsSet.builder()
         .claim("scope", roles)
         .issuedAt(issuedAt)
-        .expiresAt(expirseAt)
+        .expiresAt(expiresAt)
         .subject(userDetails.getUsername())
         .build();
 
