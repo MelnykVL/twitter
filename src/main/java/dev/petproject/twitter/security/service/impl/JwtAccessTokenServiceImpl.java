@@ -22,7 +22,7 @@ public class JwtAccessTokenServiceImpl implements AccessTokenService {
 
   @Override
   public String generateIdToken(Authentication authentication) {
-    UserDetails userDetails = Optional.of(authentication.getDetails())
+    UserDetails userDetails = Optional.of(authentication.getPrincipal())
         .filter(UserDetails.class::isInstance)
         .map(UserDetails.class::cast)
         .orElseThrow(() -> new RuntimeException("Failed to create UserDetails from Authentication."));
