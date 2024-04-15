@@ -10,3 +10,7 @@ services:
       POSTGRES_DB: ${TWITTER_POSTGRES_DB_NAME}
     ports:
        - '${TWITTER_POSTGRES_DB_PORT}:5432'
+  sonar:
+    image: sonarqube:9.9.4-community
+    ports:
+      - '9000:9000'
