@@ -8,18 +8,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/demo")
 public class DemoController {
 
+  public static final String DEFAULT_MESSAGE = "This is protected resource";
+
   @GetMapping("/just-auth")
   public String hitJustAuthEndpoint() {
-    return "This is protected resource";
+    return DEFAULT_MESSAGE;
   }
 
   @GetMapping("/just-role-user")
   public String hitJustRoleUserEndpoint() {
-    return "This is protected resource";
+    return DEFAULT_MESSAGE;
   }
 
   @GetMapping("/just-role-admin")
   public String hitJustRoleAdminEndpoint() {
-    return "This is protected resource";
+    return DEFAULT_MESSAGE;
   }
 }
