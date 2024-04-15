@@ -1,5 +1,6 @@
 package dev.petproject.twitter.subscription.usecase.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.subscription.mapper.UnsubscribeRequestToSubscriptionMapper;
 import dev.petproject.twitter.subscription.model.Subscription;
 import dev.petproject.twitter.subscription.service.SubscriptionService;
@@ -27,11 +28,11 @@ public class SubscriptionDeleteUseCaseFacade implements SubscriptionDeleteUseCas
     UserProfile followed = subscription.getFollowed();
 
     if (follower.equals(followed)) {
-      throw new RuntimeException("There is no sense to unsubscribe from yourself.");
+      throw new TwitterException("There is no sense to unsubscribe from yourself.");
     }
     if (!this.subscriptionService.existsSubscription(subscription)) {
       String errorMessage = String.format("You're not subscribed to %s.", followed.getNickname());
-      throw new RuntimeException(errorMessage);
+      throw new TwitterException(errorMessage);
     }
     this.subscriptionService.deleteSubscription(subscription);
   }

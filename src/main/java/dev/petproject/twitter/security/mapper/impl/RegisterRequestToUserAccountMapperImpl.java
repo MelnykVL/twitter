@@ -1,5 +1,6 @@
 package dev.petproject.twitter.security.mapper.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.security.mapper.RegisterRequestToUserAccountMapper;
 import dev.petproject.twitter.security.model.UserAccount;
 import dev.petproject.twitter.security.model.UserRole;
@@ -24,7 +25,7 @@ public class RegisterRequestToUserAccountMapperImpl implements RegisterRequestTo
   @Override
   public UserAccount map(RegisterRequest registerRequest) {
     UserRole userRole = this.userRoleService.findUserRole()
-        .orElseThrow(() -> new RuntimeException("User role not found"));
+        .orElseThrow(() -> new TwitterException("User role not found"));
 
     UserAccount userAccount = new UserAccount();
     userAccount.setUsername(registerRequest.username()

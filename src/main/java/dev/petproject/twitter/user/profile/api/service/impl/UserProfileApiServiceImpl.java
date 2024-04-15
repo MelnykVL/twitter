@@ -1,5 +1,6 @@
 package dev.petproject.twitter.user.profile.api.service.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.security.api.model.CurrentUserApiModel;
 import dev.petproject.twitter.security.api.service.IdentityApiService;
 import dev.petproject.twitter.user.profile.api.service.UserProfileApiService;
@@ -21,7 +22,7 @@ public class UserProfileApiServiceImpl implements UserProfileApiService {
   @Override
   public UserProfile currentUserProfile() {
     CurrentUserApiModel currentUser = this.identityApiService.currentUserAccount()
-        .orElseThrow(() -> new RuntimeException("The user must be authorized in the system"));
+        .orElseThrow(() -> new TwitterException("The user must be authorized in the system"));
     return this.userProfileService.findUserProfileById(currentUser.userAccountId());
   }
 

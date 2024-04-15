@@ -1,5 +1,6 @@
 package dev.petproject.twitter.user.profile.service.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.user.profile.model.UserProfile;
 import dev.petproject.twitter.user.profile.repository.UserProfileRepository;
 import dev.petproject.twitter.user.profile.service.UserProfileService;
@@ -18,12 +19,12 @@ public class UserProfileServiceImpl implements UserProfileService {
   public void createUserProfile(UserProfile userProfile) {
     if (this.userProfileRepository.existsById(userProfile.getId())) {
       String errorMessage = String.format("User profile with specified Id = %d already exists", userProfile.getId());
-      throw new RuntimeException(errorMessage);
+      throw new TwitterException(errorMessage);
     }
     if (this.userProfileRepository.existsByNickname(userProfile.getNickname())) {
       String errorMessage = String.format("User profile with specified Nickname = %s already exists",
           userProfile.getNickname());
-      throw new RuntimeException(errorMessage);
+      throw new TwitterException(errorMessage);
     }
     this.userProfileRepository.save(userProfile);
   }
@@ -33,7 +34,7 @@ public class UserProfileServiceImpl implements UserProfileService {
     return this.userProfileRepository.findById(userProfileId)
         .orElseThrow(() -> {
           String errorMessage = String.format("User with Id = %d does not exist", userProfileId);
-          return new RuntimeException(errorMessage);
+          return new TwitterException(errorMessage);
         });
   }
 }

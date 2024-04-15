@@ -1,5 +1,6 @@
 package dev.petproject.twitter.subscription.usecase.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.subscription.mapper.SubscribeRequestToSubscriptionMapper;
 import dev.petproject.twitter.subscription.model.Subscription;
 import dev.petproject.twitter.subscription.service.SubscriptionService;
@@ -27,11 +28,11 @@ public class SubscriptionAddUseCaseFacade implements SubscriptionAddUseCase {
     UserProfile followed = subscription.getFollowed();
 
     if (follower.equals(followed)) {
-      throw new RuntimeException("You cannot subscribe to yourself!");
+      throw new TwitterException("You cannot subscribe to yourself!");
     }
     if (this.subscriptionService.existsSubscription(subscription)) {
       String errorMessage = String.format("You're already subscribed to %s.", followed.getNickname());
-      throw new RuntimeException(errorMessage);
+      throw new TwitterException(errorMessage);
     }
     this.subscriptionService.createSubscription(subscription);
   }

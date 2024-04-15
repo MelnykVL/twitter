@@ -1,5 +1,6 @@
 package dev.petproject.twitter.security.service.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.security.service.AccessTokenService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,7 +26,7 @@ public class JwtAccessTokenServiceImpl implements AccessTokenService {
     UserDetails userDetails = Optional.of(authentication.getPrincipal())
         .filter(UserDetails.class::isInstance)
         .map(UserDetails.class::cast)
-        .orElseThrow(() -> new RuntimeException("Failed to create UserDetails from Authentication."));
+        .orElseThrow(() -> new TwitterException("Failed to create UserDetails from Authentication."));
     List<String> roles = userDetails.getAuthorities()
         .stream()
         .map(GrantedAuthority::getAuthority)

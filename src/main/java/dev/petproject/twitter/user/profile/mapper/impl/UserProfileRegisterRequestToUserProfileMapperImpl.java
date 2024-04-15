@@ -1,5 +1,6 @@
 package dev.petproject.twitter.user.profile.mapper.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.security.api.model.CurrentUserApiModel;
 import dev.petproject.twitter.security.api.service.IdentityApiService;
 import dev.petproject.twitter.user.profile.mapper.UserProfileRegisterRequestToUserProfileMapper;
@@ -20,7 +21,7 @@ public class UserProfileRegisterRequestToUserProfileMapperImpl
   @Override
   public UserProfile map(UserProfileRegisterRequest registerRequest) {
     CurrentUserApiModel currentUserApiModel = this.identityApiService.currentUserAccount()
-        .orElseThrow(() -> new RuntimeException("To create a user profile, the user must be authorized in the system"));
+        .orElseThrow(() -> new TwitterException("To create a user profile, the user must be authorized in the system"));
 
     UserProfile userProfile = new UserProfile();
     userProfile.setId(currentUserApiModel.userAccountId());

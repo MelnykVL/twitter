@@ -1,5 +1,6 @@
 package dev.petproject.twitter.user.tweet.mapper.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.user.tweet.mapper.TweetEditRequestToTweetMapper;
 import dev.petproject.twitter.user.tweet.model.Tweet;
 import dev.petproject.twitter.user.tweet.service.TweetService;
@@ -20,7 +21,7 @@ public class TweetEditRequestToTweetMapperImpl implements TweetEditRequestToTwee
     Tweet currentTweet = this.tweetService.findTweetById(tweetEditRequest.id())
         .orElseThrow(() -> {
           String errorMessage = String.format("Tweet with Id = %d does not exist.", tweetEditRequest.id());
-          return new RuntimeException(errorMessage);
+          return new TwitterException(errorMessage);
         });
     currentTweet.setMessage(tweetEditRequest.message());
 
