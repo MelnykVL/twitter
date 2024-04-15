@@ -32,9 +32,9 @@ import java.util.UUID;
 @EnableWebSecurity
 public class SecurityConfig {
 
-  private final RsaKeys rsaKey;
+  private final RsaKeys rsaKeys;
 
-  public SecurityConfig(RsaKeys rsaKey) { this.rsaKey = rsaKey; }
+  public SecurityConfig(RsaKeys rsaKeys) { this.rsaKeys = rsaKeys; }
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -85,7 +85,7 @@ public class SecurityConfig {
 
   @Bean
   public JwtDecoder jwtDecoder() {
-    return NimbusJwtDecoder.withPublicKey(this.rsaKey.rsaPublicKey())
+    return NimbusJwtDecoder.withPublicKey(this.rsaKeys.rsaPublicKey())
         .build();
   }
 
@@ -96,8 +96,8 @@ public class SecurityConfig {
 
   @Bean
   public JWKSource<SecurityContext> jwkSource() {
-    RSAPublicKey publicKey = this.rsaKey.rsaPublicKey();
-    RSAPrivateKey privateKey = this.rsaKey.rsaPrivateKey();
+    RSAPublicKey publicKey = this.rsaKeys.rsaPublicKey();
+    RSAPrivateKey privateKey = this.rsaKeys.rsaPrivateKey();
     RSAKey rsaKey = new RSAKey.Builder(publicKey).privateKey(privateKey)
         .keyID(UUID.randomUUID()
             .toString())
