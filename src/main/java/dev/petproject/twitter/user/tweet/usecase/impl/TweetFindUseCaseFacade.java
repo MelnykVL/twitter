@@ -37,6 +37,6 @@ public class TweetFindUseCaseFacade implements TweetFindUseCase {
     Pageable pageable = PageRequest.of(tweetFindRequest.page(), tweetFindRequest.limit(), sort);
     Page<Tweet> pageableTweets = this.tweetService.findAllTweets(owner, pageable);
 
-    return this.tweetPageResponseMapper.map(pageableTweets);
+    return this.tweetPageResponseMapper.convert(pageableTweets);
   }
 }

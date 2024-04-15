@@ -23,7 +23,7 @@ public class RegisterRequestToUserAccountMapperImpl implements RegisterRequestTo
   }
 
   @Override
-  public UserAccount map(RegisterRequest registerRequest) {
+  public UserAccount convert(RegisterRequest registerRequest) {
     UserRole userRole = this.userRoleService.findUserRole()
         .orElseThrow(() -> new TwitterException("User role not found"));
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class UserAccountToUserMapperImpl implements UserAccountToUserMapper {
 
   @Override
-  public User map(UserAccount userAccount) {
+  public User convert(UserAccount userAccount) {
     return new User(userAccount.getUsername(), userAccount.getPassword(), userAccount.getAuthorities());
   }
 }

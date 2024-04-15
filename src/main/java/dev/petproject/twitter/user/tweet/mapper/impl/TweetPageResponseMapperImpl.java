@@ -19,9 +19,9 @@ public class TweetPageResponseMapperImpl implements TweetPageResponseMapper {
   }
 
   @Override
-  public TweetPageResponse map(Page<Tweet> tweets) {
+  public TweetPageResponse convert(Page<Tweet> tweets) {
     List<TweetResponse> tweetResponseList = tweets.stream()
-        .map(this.tweetToTweetResponseMapper::map)
+        .map(this.tweetToTweetResponseMapper::convert)
         .toList();
 
     return new TweetPageResponse(tweets.getTotalElements(), tweets.isFirst(), tweets.isLast(), tweetResponseList);

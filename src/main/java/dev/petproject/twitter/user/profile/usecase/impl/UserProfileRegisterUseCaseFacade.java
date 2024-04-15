@@ -21,7 +21,7 @@ public class UserProfileRegisterUseCaseFacade implements UserProfileRegisterUseC
 
   @Override
   public void registerUserProfile(UserProfileRegisterRequest registerRequest) {
-    UserProfile userProfile = this.mapper.map(registerRequest);
+    UserProfile userProfile = this.mapper.convert(registerRequest);
     this.userProfileService.createUserProfile(userProfile);
   }
 }

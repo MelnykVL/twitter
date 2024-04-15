@@ -44,9 +44,9 @@ public class TweetEditUseCaseFacade implements TweetEditUseCase {
       throw new TwitterException(errorMessage);
     }
 
-    Tweet tweet = this.tweetEditRequestToTweetMapper.map(tweetEditRequest);
+    Tweet tweet = this.tweetEditRequestToTweetMapper.convert(tweetEditRequest);
     this.tweetService.updateTweet(tweet);
 
-    return this.tweetToTweetResponseMapper.map(tweet);
+    return this.tweetToTweetResponseMapper.convert(tweet);
   }
 }

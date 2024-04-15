@@ -2,6 +2,6 @@ package dev.petproject.twitter.security.mapper;
 
 import dev.petproject.twitter.security.model.UserAccount;
 import dev.petproject.twitter.security.web.model.RegisterRequest;
+import org.springframework.core.convert.converter.Converter;
 
-// TODO: Use Converter interface instead own Mapper interface
-public interface RegisterRequestToUserAccountMapper extends Mapper<UserAccount, RegisterRequest> { }
+public interface RegisterRequestToUserAccountMapper extends Converter<RegisterRequest, UserAccount> { }

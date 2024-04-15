@@ -23,7 +23,7 @@ public class SubscriptionDeleteUseCaseFacade implements SubscriptionDeleteUseCas
 
   @Override
   public void unsubscribe(UnsubscribeRequest unsubscribeRequest) {
-    Subscription subscription = this.unsubscribeRequestToSubscriptionMapper.map(unsubscribeRequest);
+    Subscription subscription = this.unsubscribeRequestToSubscriptionMapper.convert(unsubscribeRequest);
     UserProfile follower = subscription.getFollower();
     UserProfile followed = subscription.getFollowed();
 

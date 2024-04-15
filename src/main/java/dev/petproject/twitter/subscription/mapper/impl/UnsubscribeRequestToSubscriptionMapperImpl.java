@@ -17,7 +17,7 @@ public class UnsubscribeRequestToSubscriptionMapperImpl implements UnsubscribeRe
   }
 
   @Override
-  public Subscription map(UnsubscribeRequest unsubscribeRequest) {
+  public Subscription convert(UnsubscribeRequest unsubscribeRequest) {
     UserProfile follower = this.userProfileApiService.currentUserProfile();
     UserProfile followed = this.userProfileApiService.findUserProfileById(unsubscribeRequest.followedId());
     Subscription subscription = new Subscription();

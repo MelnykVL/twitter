@@ -19,7 +19,7 @@ public class UserProfileRegisterRequestToUserProfileMapperImpl
   }
 
   @Override
-  public UserProfile map(UserProfileRegisterRequest registerRequest) {
+  public UserProfile convert(UserProfileRegisterRequest registerRequest) {
     CurrentUserApiModel currentUserApiModel = this.identityApiService.currentUserAccount()
         .orElseThrow(() -> new TwitterException("To create a user profile, the user must be authorized in the system"));
 

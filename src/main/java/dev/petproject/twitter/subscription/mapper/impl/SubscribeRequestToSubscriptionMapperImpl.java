@@ -17,7 +17,7 @@ public class SubscribeRequestToSubscriptionMapperImpl implements SubscribeReques
   }
 
   @Override
-  public Subscription map(SubscribeRequest subscribeRequest) {
+  public Subscription convert(SubscribeRequest subscribeRequest) {
     UserProfile follower = this.userProfileApiService.currentUserProfile();
     UserProfile followed = this.userProfileApiService.findUserProfileById(subscribeRequest.followedId());
     Subscription subscription = new Subscription();

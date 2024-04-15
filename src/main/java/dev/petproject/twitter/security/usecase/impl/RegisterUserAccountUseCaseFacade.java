@@ -21,7 +21,7 @@ public class RegisterUserAccountUseCaseFacade implements RegisterUserAccountUseC
 
   @Override
   public void register(RegisterRequest registerRequest) {
-    UserAccount userAccount = this.registerRequestToUserAccountMapper.map(registerRequest);
+    UserAccount userAccount = this.registerRequestToUserAccountMapper.convert(registerRequest);
     this.userAccountService.createUserAccount(userAccount);
   }
 }

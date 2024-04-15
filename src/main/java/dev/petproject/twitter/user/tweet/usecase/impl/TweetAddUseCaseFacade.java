@@ -25,8 +25,8 @@ public class TweetAddUseCaseFacade implements TweetAddUseCase {
 
   @Override
   public TweetResponse addTweet(TweetAddRequest tweetAddRequest) {
-    Tweet tweet = this.tweetAddRequestToTweetMapper.map(tweetAddRequest);
+    Tweet tweet = this.tweetAddRequestToTweetMapper.convert(tweetAddRequest);
     tweetService.createTweet(tweet);
-    return this.tweetToTweetResponseMapper.map(tweet);
+    return this.tweetToTweetResponseMapper.convert(tweet);
   }
 }

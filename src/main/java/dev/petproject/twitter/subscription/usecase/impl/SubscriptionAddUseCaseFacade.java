@@ -23,7 +23,7 @@ public class SubscriptionAddUseCaseFacade implements SubscriptionAddUseCase {
 
   @Override
   public void subscribe(SubscribeRequest subscribeRequest) {
-    Subscription subscription = this.subscriptionMapper.map(subscribeRequest);
+    Subscription subscription = this.subscriptionMapper.convert(subscribeRequest);
     UserProfile follower = subscription.getFollower();
     UserProfile followed = subscription.getFollowed();
 

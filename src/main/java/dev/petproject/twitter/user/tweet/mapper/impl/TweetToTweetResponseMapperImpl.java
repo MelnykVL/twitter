@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class TweetToTweetResponseMapperImpl implements TweetToTweetResponseMapper {
 
   @Override
-  public TweetResponse map(Tweet tweet) {
+  public TweetResponse convert(Tweet tweet) {
     return new TweetResponse(tweet.getId(), tweet.getMessage(), tweet.getCreatedTimestamp(),
         tweet.getModifiedTimestamp());
   }

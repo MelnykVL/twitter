@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     return this.userAccountService.findUserByUsername(username)
-        .map(this.mapper::map)
+        .map(this.mapper::convert)
         .orElseThrow(() -> new UsernameNotFoundException("Bad credentials"));
   }
 }

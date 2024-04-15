@@ -16,7 +16,7 @@ public class TweetAddRequestToTweetMapperImpl implements TweetAddRequestToTweetM
   }
 
   @Override
-  public Tweet map(TweetAddRequest tweetAddRequest) {
+  public Tweet convert(TweetAddRequest tweetAddRequest) {
     Tweet tweet = new Tweet();
     tweet.setMessage(tweetAddRequest.message());
     tweet.setUserProfile(this.userProfileApiService.currentUserProfile());

@@ -17,7 +17,7 @@ public class TweetEditRequestToTweetMapperImpl implements TweetEditRequestToTwee
   }
 
   @Override
-  public Tweet map(TweetEditRequest tweetEditRequest) {
+  public Tweet convert(TweetEditRequest tweetEditRequest) {
     Tweet currentTweet = this.tweetService.findTweetById(tweetEditRequest.id())
         .orElseThrow(() -> {
           String errorMessage = String.format("Tweet with Id = %d does not exist.", tweetEditRequest.id());
