@@ -19,6 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceImplUnitTest {
@@ -33,6 +34,7 @@ class UserDetailsServiceImplUnitTest {
 
   @Test
   void findUserByUsername_ShouldReturnNonEmptyUserDetails() {
+    // given
     UserAccount userAccount = new UserAccount();
     userAccount.setUsername("test_user@gmail.com");
     userAccount.setPassword("test_pass");
@@ -40,6 +42,7 @@ class UserDetailsServiceImplUnitTest {
 
     User expectedUser = new User(userAccount.getUsername(), userAccount.getPassword(), userAccount.getAuthorities());
 
+    // when
     Mockito.when(userAccountService.findUserByUsername(userAccount.getUsername()))
         .thenReturn(Optional.of(userAccount));
     Mockito.when(converter.convert(userAccount))
@@ -47,28 +50,29 @@ class UserDetailsServiceImplUnitTest {
 
     UserDetails actualResult = userDetailsService.loadUserByUsername(userAccount.getUsername());
 
+    // then
     assertEquals(expectedUser, actualResult);
-    Mockito.verify(userAccountService, Mockito.times(1))
-        .findUserByUsername(any());
-    Mockito.verify(converter, Mockito.times(1))
-        .convert(any());
+    verify(userAccountService, Mockito.times(1)).findUserByUsername(any());
+    verify(converter, Mockito.times(1)).convert(any());
   }
 
   @Test
   void findUserByUsername_ShouldThrowUserNotFoundException() {
+    // given
     UserAccount userAccount = new UserAccount();
     userAccount.setUsername("test_user@gmail.com");
     userAccount.setPassword("test_pass");
     userAccount.setAuthorities(Collections.singleton(new UserRole()));
 
     String username = userAccount.getUsername();
+
+    // when
     Mockito.when(userAccountService.findUserByUsername(username))
         .thenReturn(Optional.empty());
 
+    // then
     assertThrows(UsernameNotFoundException.class, () -> userDetailsService.loadUserByUsername(username));
-    Mockito.verify(userAccountService, Mockito.times(1))
-        .findUserByUsername(any());
-    Mockito.verify(converter, Mockito.never())
-        .convert(any());
+    verify(userAccountService, Mockito.times(1)).findUserByUsername(any());
+    verify(converter, Mockito.never()).convert(any());
   }
 }

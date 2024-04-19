@@ -27,28 +27,34 @@ class UserRoleServiceImplUnitTest {
 
   @Test
   void findUserRole_ShouldReturnNonEmptyUserRole() {
+    // given
     UserRole expectedUserRole = new UserRole();
     expectedUserRole.setId(1L);
     expectedUserRole.setAuthority("ROLE_USER");
 
+    // when
     Mockito.when(userRoleRepository.findByAuthority(expectedUserRole.getAuthority()))
         .thenReturn(Optional.of(expectedUserRole));
 
     UserRole actualResult = userRoleService.findUserRole();
 
+    // then
     assertEquals(expectedUserRole, actualResult);
     verify(userRoleRepository, Mockito.times(1)).findByAuthority(any());
   }
 
   @Test
   void findUserRole_ShouldThrowTwitterException() {
+    // given
     UserRole expectedUserRole = new UserRole();
     expectedUserRole.setId(1L);
     expectedUserRole.setAuthority("ROLE_USER");
 
+    // when
     Mockito.when(userRoleRepository.findByAuthority(expectedUserRole.getAuthority()))
         .thenReturn(Optional.empty());
 
+    // then
     assertThrows(TwitterException.class, () -> userRoleService.findUserRole());
     verify(userRoleRepository, Mockito.times(1)).findByAuthority(any());
   }
