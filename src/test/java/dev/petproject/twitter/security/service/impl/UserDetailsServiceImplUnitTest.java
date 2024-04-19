@@ -61,11 +61,11 @@ class UserDetailsServiceImplUnitTest {
     userAccount.setPassword("test_pass");
     userAccount.setAuthorities(Collections.singleton(new UserRole()));
 
-    Mockito.when(userAccountService.findUserByUsername(userAccount.getUsername()))
+    String username = userAccount.getUsername();
+    Mockito.when(userAccountService.findUserByUsername(username))
         .thenReturn(Optional.empty());
 
-    assertThrows(UsernameNotFoundException.class,
-        () -> userDetailsService.loadUserByUsername((userAccount.getUsername())));
+    assertThrows(UsernameNotFoundException.class, () -> userDetailsService.loadUserByUsername(username));
     Mockito.verify(userAccountService, Mockito.times(1))
         .findUserByUsername(any());
     Mockito.verify(converter, Mockito.never())
