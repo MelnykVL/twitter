@@ -24,8 +24,7 @@ public class RegisterRequestToUserAccountConverterImpl implements RegisterReques
 
   @Override
   public UserAccount convert(RegisterRequest registerRequest) {
-    UserRole userRole = this.userRoleService.findUserRole()
-        .orElseThrow(() -> new TwitterException("User role not found"));
+    UserRole userRole = this.userRoleService.findUserRole();
 
     UserAccount userAccount = new UserAccount();
     userAccount.setUsername(registerRequest.username()
