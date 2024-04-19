@@ -1,10 +1,10 @@
 package dev.petproject.twitter.security.service.impl;
 
+import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.security.model.UserRole;
 import dev.petproject.twitter.security.repository.UserRoleRepository;
 import dev.petproject.twitter.security.service.UserRoleService;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
@@ -16,7 +16,8 @@ public class UserRoleServiceImpl implements UserRoleService {
   }
 
   @Override
-  public Optional<UserRole> findUserRole() {
-    return this.userRoleRepository.findByAuthority("ROLE_USER");
+  public UserRole findUserRole() {
+    return this.userRoleRepository.findByAuthority("ROLE_USER")
+        .orElseThrow(() -> new TwitterException("User role not found"));
   }
 }
