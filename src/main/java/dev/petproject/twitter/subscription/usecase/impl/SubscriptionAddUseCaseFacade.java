@@ -1,7 +1,7 @@
 package dev.petproject.twitter.subscription.usecase.impl;
 
 import dev.petproject.twitter.common.exception.TwitterException;
-import dev.petproject.twitter.subscription.mapper.SubscribeRequestToSubscriptionMapper;
+import dev.petproject.twitter.subscription.converter.SubscribeRequestToSubscriptionConverter;
 import dev.petproject.twitter.subscription.model.Subscription;
 import dev.petproject.twitter.subscription.service.SubscriptionService;
 import dev.petproject.twitter.subscription.usecase.SubscriptionAddUseCase;
@@ -12,18 +12,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubscriptionAddUseCaseFacade implements SubscriptionAddUseCase {
 
-  private final SubscribeRequestToSubscriptionMapper subscriptionMapper;
+  private final SubscribeRequestToSubscriptionConverter subscribeRequestToSubscriptionConverter;
   private final SubscriptionService subscriptionService;
 
-  public SubscriptionAddUseCaseFacade(SubscribeRequestToSubscriptionMapper subscriptionMapper,
+  public SubscriptionAddUseCaseFacade(SubscribeRequestToSubscriptionConverter subscribeRequestToSubscriptionConverter,
       SubscriptionService subscriptionService) {
-    this.subscriptionMapper = subscriptionMapper;
+    this.subscribeRequestToSubscriptionConverter = subscribeRequestToSubscriptionConverter;
     this.subscriptionService = subscriptionService;
   }
 
   @Override
   public void subscribe(SubscribeRequest subscribeRequest) {
-    Subscription subscription = this.subscriptionMapper.convert(subscribeRequest);
+    Subscription subscription = this.subscribeRequestToSubscriptionConverter.convert(subscribeRequest);
     UserProfile follower = subscription.getFollower();
     UserProfile followed = subscription.getFollowed();
 

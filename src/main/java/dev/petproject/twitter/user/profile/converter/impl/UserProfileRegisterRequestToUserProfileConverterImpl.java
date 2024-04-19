@@ -1,20 +1,20 @@
-package dev.petproject.twitter.user.profile.mapper.impl;
+package dev.petproject.twitter.user.profile.converter.impl;
 
 import dev.petproject.twitter.common.exception.TwitterException;
 import dev.petproject.twitter.security.api.model.CurrentUserApiModel;
 import dev.petproject.twitter.security.api.service.IdentityApiService;
-import dev.petproject.twitter.user.profile.mapper.UserProfileRegisterRequestToUserProfileMapper;
+import dev.petproject.twitter.user.profile.converter.UserProfileRegisterRequestToUserProfileConverter;
 import dev.petproject.twitter.user.profile.model.UserProfile;
 import dev.petproject.twitter.user.profile.web.model.UserProfileRegisterRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserProfileRegisterRequestToUserProfileMapperImpl
-    implements UserProfileRegisterRequestToUserProfileMapper {
+public class UserProfileRegisterRequestToUserProfileConverterImpl
+    implements UserProfileRegisterRequestToUserProfileConverter {
 
   private final IdentityApiService identityApiService;
 
-  public UserProfileRegisterRequestToUserProfileMapperImpl(IdentityApiService identityApiService) {
+  public UserProfileRegisterRequestToUserProfileConverterImpl(IdentityApiService identityApiService) {
     this.identityApiService = identityApiService;
   }
 

@@ -1,18 +1,18 @@
-package dev.petproject.twitter.user.tweet.mapper.impl;
+package dev.petproject.twitter.user.tweet.converter.impl;
 
 import dev.petproject.twitter.common.exception.TwitterException;
-import dev.petproject.twitter.user.tweet.mapper.TweetEditRequestToTweetMapper;
+import dev.petproject.twitter.user.tweet.converter.TweetEditRequestToTweetConverter;
 import dev.petproject.twitter.user.tweet.model.Tweet;
 import dev.petproject.twitter.user.tweet.service.TweetService;
 import dev.petproject.twitter.user.tweet.web.model.TweetEditRequest;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TweetEditRequestToTweetMapperImpl implements TweetEditRequestToTweetMapper {
+public class TweetEditRequestToTweetConverterImpl implements TweetEditRequestToTweetConverter {
 
   private final TweetService tweetService;
 
-  public TweetEditRequestToTweetMapperImpl(TweetService tweetService) {
+  public TweetEditRequestToTweetConverterImpl(TweetService tweetService) {
     this.tweetService = tweetService;
   }
 

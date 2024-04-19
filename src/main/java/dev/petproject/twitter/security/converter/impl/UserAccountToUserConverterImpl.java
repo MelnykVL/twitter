@@ -1,12 +1,12 @@
-package dev.petproject.twitter.security.mapper.impl;
+package dev.petproject.twitter.security.converter.impl;
 
-import dev.petproject.twitter.security.mapper.UserAccountToUserMapper;
+import dev.petproject.twitter.security.converter.UserAccountToUserConverter;
 import dev.petproject.twitter.security.model.UserAccount;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserAccountToUserMapperImpl implements UserAccountToUserMapper {
+public class UserAccountToUserConverterImpl implements UserAccountToUserConverter {
 
   @Override
   public User convert(UserAccount userAccount) {

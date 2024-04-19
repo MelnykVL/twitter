@@ -1,6 +1,6 @@
 package dev.petproject.twitter.security.usecase.impl;
 
-import dev.petproject.twitter.security.mapper.RegisterRequestToUserAccountMapper;
+import dev.petproject.twitter.security.converter.RegisterRequestToUserAccountConverter;
 import dev.petproject.twitter.security.model.UserAccount;
 import dev.petproject.twitter.security.service.UserAccountService;
 import dev.petproject.twitter.security.usecase.RegisterUserAccountUseCase;
@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 public class RegisterUserAccountUseCaseFacade implements RegisterUserAccountUseCase {
 
   private final UserAccountService userAccountService;
-  private final RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper;
+  private final RegisterRequestToUserAccountConverter registerRequestToUserAccountConverter;
 
   public RegisterUserAccountUseCaseFacade(UserAccountService userAccountService,
-      RegisterRequestToUserAccountMapper registerRequestToUserAccountMapper) {
+      RegisterRequestToUserAccountConverter registerRequestToUserAccountConverter) {
     this.userAccountService = userAccountService;
-    this.registerRequestToUserAccountMapper = registerRequestToUserAccountMapper;
+    this.registerRequestToUserAccountConverter = registerRequestToUserAccountConverter;
   }
 
   @Override
   public void register(RegisterRequest registerRequest) {
-    UserAccount userAccount = this.registerRequestToUserAccountMapper.convert(registerRequest);
+    UserAccount userAccount = this.registerRequestToUserAccountConverter.convert(registerRequest);
     this.userAccountService.createUserAccount(userAccount);
   }
 }

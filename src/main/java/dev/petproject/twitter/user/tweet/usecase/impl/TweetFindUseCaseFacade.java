@@ -2,7 +2,7 @@ package dev.petproject.twitter.user.tweet.usecase.impl;
 
 import dev.petproject.twitter.user.profile.api.service.UserProfileApiService;
 import dev.petproject.twitter.user.profile.model.UserProfile;
-import dev.petproject.twitter.user.tweet.mapper.TweetPageResponseMapper;
+import dev.petproject.twitter.user.tweet.converter.TweetPageResponseConverter;
 import dev.petproject.twitter.user.tweet.model.Tweet;
 import dev.petproject.twitter.user.tweet.service.TweetService;
 import dev.petproject.twitter.user.tweet.usecase.TweetFindUseCase;
@@ -21,13 +21,13 @@ public class TweetFindUseCaseFacade implements TweetFindUseCase {
 
   private final TweetService tweetService;
   private final UserProfileApiService userProfileApiService;
-  private final TweetPageResponseMapper tweetPageResponseMapper;
+  private final TweetPageResponseConverter tweetPageResponseConverter;
 
   public TweetFindUseCaseFacade(TweetService tweetService, UserProfileApiService userProfileApiService,
-      TweetPageResponseMapper tweetPageResponseMapper) {
+      TweetPageResponseConverter tweetPageResponseConverter) {
     this.tweetService = tweetService;
     this.userProfileApiService = userProfileApiService;
-    this.tweetPageResponseMapper = tweetPageResponseMapper;
+    this.tweetPageResponseConverter = tweetPageResponseConverter;
   }
 
   @Override
@@ -37,6 +37,6 @@ public class TweetFindUseCaseFacade implements TweetFindUseCase {
     Pageable pageable = PageRequest.of(tweetFindRequest.page(), tweetFindRequest.limit(), sort);
     Page<Tweet> pageableTweets = this.tweetService.findAllTweets(owner, pageable);
 
-    return this.tweetPageResponseMapper.convert(pageableTweets);
+    return this.tweetPageResponseConverter.convert(pageableTweets);
   }
 }

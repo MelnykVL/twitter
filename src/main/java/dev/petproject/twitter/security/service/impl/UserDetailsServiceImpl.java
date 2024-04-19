@@ -1,6 +1,6 @@
 package dev.petproject.twitter.security.service.impl;
 
-import dev.petproject.twitter.security.mapper.UserAccountToUserMapper;
+import dev.petproject.twitter.security.converter.UserAccountToUserConverter;
 import dev.petproject.twitter.security.service.UserAccountService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,17 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
   private final UserAccountService userAccountService;
-  private final UserAccountToUserMapper mapper;
+  private final UserAccountToUserConverter converter;
 
-  public UserDetailsServiceImpl(UserAccountService userAccountService, UserAccountToUserMapper mapper) {
+  public UserDetailsServiceImpl(UserAccountService userAccountService, UserAccountToUserConverter converter) {
     this.userAccountService = userAccountService;
-    this.mapper = mapper;
+    this.converter = converter;
   }
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     return this.userAccountService.findUserByUsername(username)
-        .map(this.mapper::convert)
+        .map(this.converter::convert)
         .orElseThrow(() -> new UsernameNotFoundException("Bad credentials"));
   }
 }

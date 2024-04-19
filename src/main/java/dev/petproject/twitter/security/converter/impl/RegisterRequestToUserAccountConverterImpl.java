@@ -1,7 +1,7 @@
-package dev.petproject.twitter.security.mapper.impl;
+package dev.petproject.twitter.security.converter.impl;
 
 import dev.petproject.twitter.common.exception.TwitterException;
-import dev.petproject.twitter.security.mapper.RegisterRequestToUserAccountMapper;
+import dev.petproject.twitter.security.converter.RegisterRequestToUserAccountConverter;
 import dev.petproject.twitter.security.model.UserAccount;
 import dev.petproject.twitter.security.model.UserRole;
 import dev.petproject.twitter.security.service.UserRoleService;
@@ -12,12 +12,12 @@ import java.util.Locale;
 import java.util.Set;
 
 @Component
-public class RegisterRequestToUserAccountMapperImpl implements RegisterRequestToUserAccountMapper {
+public class RegisterRequestToUserAccountConverterImpl implements RegisterRequestToUserAccountConverter {
 
   private final UserRoleService userRoleService;
   private final PasswordEncoder passwordEncoder;
 
-  public RegisterRequestToUserAccountMapperImpl(UserRoleService userRoleService, PasswordEncoder passwordEncoder) {
+  public RegisterRequestToUserAccountConverterImpl(UserRoleService userRoleService, PasswordEncoder passwordEncoder) {
     this.userRoleService = userRoleService;
     this.passwordEncoder = passwordEncoder;
   }
