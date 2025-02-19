@@ -10,6 +10,15 @@ services:
       POSTGRES_DB: ${TWITTER_POSTGRES_DB_NAME}
     ports:
        - '${TWITTER_POSTGRES_DB_PORT}:5432'
+  pgadmin:
+    image: dpage/pgadmin4:9.0
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${TWITTER_PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${TWITTER_PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - 8888:80
   sonar:
     image: sonarqube:9.9.4-community
     ports:
