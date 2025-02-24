@@ -1,9 +1,12 @@
 package dev.petproject.twitter.subscription.service.impl;
 
+import dev.petproject.twitter.subscription.model.FollowerSubscription;
 import dev.petproject.twitter.subscription.model.Subscription;
 import dev.petproject.twitter.subscription.repository.SubscriptionRepository;
 import dev.petproject.twitter.subscription.service.SubscriptionService;
 import dev.petproject.twitter.user.profile.model.UserProfile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,5 +38,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     UserProfile followed = subscription.getFollowed();
 
     return this.subscriptionRepository.existsByFollowerAndFollowed(follower, followed);
+  }
+
+  @Override
+  public Page<FollowerSubscription> findAllFollowerSubscriptions(UserProfile author, Pageable pageable) {
+    return this.subscriptionRepository.findAllByFollowed(author, pageable);
   }
 }
