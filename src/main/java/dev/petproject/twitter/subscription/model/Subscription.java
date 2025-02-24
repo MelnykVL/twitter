@@ -7,7 +7,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,9 +25,9 @@ public class Subscription {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @OneToOne
+  @ManyToOne
   private UserProfile follower;
-  @OneToOne
+  @ManyToOne
   private UserProfile followed;
   @CreatedDate
   @Column(nullable = false, updatable = false)
