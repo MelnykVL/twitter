@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: load-famouse-quotes
+      id: load-famous-quotes
       author: MelnykVL
       changes:
         - loadData:
