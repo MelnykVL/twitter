@@ -4,6 +4,6 @@
 --comment create table public.famous_quotes
 CREATE TABLE public.famous_quotes
 (
-    quote   varchar(32)  NOT NULL
+    quote   varchar(255)  NOT NULL
 );
 --rollback drop table public.famous_quotes;
