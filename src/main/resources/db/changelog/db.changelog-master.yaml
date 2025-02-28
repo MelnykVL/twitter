@@ -23,3 +23,6 @@ databaseChangeLog:
   - include:
       file: 0.0.1/changelog-load-famous-quotes.yaml
       relativeToChangelogFile: true
+  - include:
+      file: 0.0.1/changelog-load-load-twetts-to-db.sql
+      relativeToChangelogFile: true
