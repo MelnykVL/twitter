@@ -14,4 +14,4 @@ databaseChangeLog:
             file: data/famous_quotes.csv
             separator: ;
             usePreparedStatements: true
-            relativeToChangelogTile: true
+            relativeToChangelogFile: true
